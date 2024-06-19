@@ -824,7 +824,11 @@ if (lprint_norms .or. ncheck > 0) then
 
     ! Halt if correctness checker failed
     if (ierr == 1) then
+#ifdef PGF
+      stop
+#else
       error stop
+#endif
     endif
   endif
 endif
