@@ -762,7 +762,7 @@ if (lprint_norms .or. ncheck > 0) then
       zmaxerr(3) = max(zmaxerr(3), zerr(3))
       if (verbosity >= 1) then
         write(nout,'("norm zspvor( ",i4,")     = ",f20.15,"        error = ",e10.3)') ifld, znormvor(ifld), zerr(3)
-        write(nout,'("0x",Z16.16)') znormvor(ifld)
+        write(nout,'("0x",Z16.16)') transfer(znormvor(ifld),int(ifld,jpib))
       endif
     enddo
     do ifld = 1, nflevg
@@ -770,7 +770,7 @@ if (lprint_norms .or. ncheck > 0) then
       zmaxerr(2) = max(zmaxerr(2),zerr(2))
       if (verbosity >= 1) then
         write(nout,'("norm zspdiv( ",i4,",:)   = ",f20.15,"        error = ",e10.3)') ifld, znormdiv(ifld), zerr(2)
-        write(nout,'("0x",Z16.16)') znormdiv(ifld)
+        write(nout,'("0x",Z16.16)') transfer(znormdiv(ifld),int(ifld,jpib))
       endif
     enddo
     do ifld = 1, nflevg
@@ -778,7 +778,7 @@ if (lprint_norms .or. ncheck > 0) then
       zmaxerr(4) = max(zmaxerr(4), zerr(4))
       if (verbosity >= 1) then
         write(nout,'("norm zspsc3a(",i4,",:,1) = ",f20.15,"        error = ",e10.3)') ifld, znormt(ifld), zerr(4)
-        write(nout,'("0x",Z16.16)') znormt(ifld)
+        write(nout,'("0x",Z16.16)') transfer(znormt(ifld),int(ifld,jpib))
       endif
     enddo
     do ifld = 1, 1
@@ -786,7 +786,7 @@ if (lprint_norms .or. ncheck > 0) then
       zmaxerr(1) = max(zmaxerr(1), zerr(1))
       if (verbosity >= 1) then
         write(nout,'("norm zspsc2( ",i4,",:)   = ",f20.15,"        error = ",e10.3)') ifld, znormsp(ifld), zerr(1)
-        write(nout,'("0x",Z16.16)') znormsp(ifld)
+        write(nout,'("0x",Z16.16)') transfer(znormsp(ifld),int(ifld,jpib))
       endif
     enddo
 
