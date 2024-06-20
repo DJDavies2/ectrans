@@ -40,7 +40,7 @@ program transform_test
 !           Sam Hatfield
 !
 
-use parkind1, only: jpim, jprb, jprd
+use parkind1, only: jpim, jprb, jprd, jpib
 use oml_mod ,only : oml_max_threads
 use mpl_module
 use yomgstats, only: jpmaxstat
@@ -535,19 +535,19 @@ if (lprint_norms .or. ncheck > 0) then
   if (verbosity >= 1) then
     do ifld = 1, nflevg
       write(nout,'("norm zspvor( ",i4,",:)   = ",f20.15)') ifld, znormvor1(ifld)
-      write(nout,'("0x",Z16.16)') znormvor1(ifld)
+      write(nout,'("0x",Z16.16)') transfer(znormvor1(ifld),int(ifld,jpib))
     enddo
     do ifld = 1, nflevg
       write(nout,'("norm zspdiv( ",i4,",:)   = ",f20.15)') ifld, znormdiv1(ifld)
-      write(nout,'("0x",Z16.16)') znormdiv1(ifld)
+      write(nout,'("0x",Z16.16)') transfer(znormdiv1(ifld),int(ifld,jpib))
     enddo
     do ifld = 1, nflevg
       write(nout,'("norm zspsc3a(",i4,",:,1) = ",f20.15)') ifld, znormt1(ifld)
-      write(nout,'("0x",Z16.16)') znormt1(ifld)
+      write(nout,'("0x",Z16.16)') transfer(znormt1(ifld),int(ifld,jpib))
     enddo
     do ifld = 1, 1
       write(nout,'("norm zspsc2( ",i4,",:)   = ",f20.15)') ifld, znormsp1(ifld)
-      write(nout,'("0x",Z16.16)') znormsp1(ifld)
+      write(nout,'("0x",Z16.16)') transfer(znormsp1(ifld),int(ifld,jpib))
     enddo
   endif
 endif
