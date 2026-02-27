@@ -647,7 +647,9 @@ IF(.NOT.D%LGRIDONLY) THEN
           ! Calculate my polynomial with SUPOLF
           CALL GSTATS(1251,0)
           IF (.NOT.ALLOCATED(ZLPOL)) ALLOCATE(ZLPOL(0:INMAX))
+#ifndef NAGFOR
           !$OMP PARALLEL DO SCHEDULE(DYNAMIC,1) PRIVATE(JGL,ZLPOL,JI,JN)
+#endif
           DO JGL=1,IDGLU
             CALL SUPOLF(IM,INMAX,ZLRMUZ(ISL+JGL-1),ZLPOL(0:INMAX),KCHEAP=3)
             DO JI=1,ILA
@@ -655,7 +657,9 @@ IF(.NOT.D%LGRIDONLY) THEN
               ZSNDBUFV((JGL-1)*ILA+JI)=ZLPOL(JN)
             ENDDO
           ENDDO
+#ifndef NAGFOR
           !$OMP END PARALLEL DO
+#endif
           IF (ALLOCATED(ZLPOL)) DEALLOCATE(ZLPOL)
           CALL GSTATS(1251,1)
 
@@ -927,7 +931,9 @@ IF(.NOT.D%LGRIDONLY) THEN
           ! Calculate my polynomial with SUPOLF
           CALL GSTATS(1251,0)
           IF (.NOT.ALLOCATED(ZLPOL)) ALLOCATE(ZLPOL(0:INMAX))
+#ifndef NAGFOR
           !$OMP PARALLEL DO SCHEDULE(DYNAMIC,1) PRIVATE(JGL,ZLPOL,JI,JN)
+#endif
           DO JGL=1,IDGLU
             CALL SUPOLF(IM,INMAX,ZLRMUZ(ISL+JGL-1),ZLPOL(0:INMAX),KCHEAP=2)
             DO JI=1,ILS
@@ -935,7 +941,9 @@ IF(.NOT.D%LGRIDONLY) THEN
               ZSNDBUFV((JGL-1)*ILS+JI)=ZLPOL(JN)
             ENDDO
           ENDDO
+#ifndef NAGFOR
           !$OMP END PARALLEL DO
+#endif
           IF (ALLOCATED(ZLPOL)) DEALLOCATE(ZLPOL)
           CALL GSTATS(1251,1)
 
