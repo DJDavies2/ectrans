@@ -1543,10 +1543,10 @@ subroutine open_dump_checksums_file(filename, noutdump, jstep)
   exist = .false.
   if (jstep > 1) inquire(file=trim(filename), exist=exist)
   if (exist) then
-    write(nout,*) "re-opening ",  trim(filename), noutdump
+    write(nout,'(a,a,i0)') "re-opening ",  trim(filename), noutdump
     open(noutdump, file=trim(filename), status="old", position="append", action="write")
   else
-    write(nout,*) "opening ",  trim(filename), noutdump
+    write(nout,'(a,a,i0)') "opening ",  trim(filename), noutdump
     open(noutdump, file=trim(filename), action="write")
   endif
 
@@ -1590,7 +1590,7 @@ subroutine dump_checksums_pgp(filename, noutdump,             &
   enddo
 
   if (myproc == 1) then
-    write(nout,*) "close ", noutdump
+    write(nout,'(a,i0)') "close ", noutdump
     close(noutdump)
     if (allocated(gfld)) deallocate(gfld)
   endif
@@ -1657,7 +1657,7 @@ subroutine dump_checksums_pgp_uv_3a_2(filename, noutdump,                      &
   enddo
 
   if (myproc == 1) then
-    write(nout,*) "close ", noutdump
+    write(nout,'(a,i0)') "close ", noutdump
     close(noutdump)
     if (allocated(gfld)) deallocate(gfld)
   endif
@@ -1722,7 +1722,7 @@ subroutine dump_checksums_psp(filename, noutdump,       &
   endif
 
   if (myproc == 1) then
-    write(nout,*) "close ", noutdump
+    write(nout,'(a,i0)') "close ", noutdump
     close(noutdump)
     if (allocated(gspfld)) deallocate(gspfld)
   endif
@@ -1800,7 +1800,7 @@ subroutine dump_checksums_psp_3a_2(filename, noutdump,  &
   endif
 
   if (myproc == 1) then
-    write(nout,*) "close ", noutdump
+    write(nout,'(a,i0)') "close ", noutdump
     close(noutdump)
     if (allocated(gspfld)) deallocate(gspfld)
   endif
